@@ -69,6 +69,52 @@ Mandalorian clans            DWA + MND + Concordia: a clan alliance against the 
 Shipbuilders' Pact           KUA, REN, FON, Corellia (CEC), Sluis Van: the yards selling to both sides.
 Tribal/natives coalition     FLT, Gungans, Ewoks, Korunnai, Marits: "the galaxy's forgotten peoples" (flavour).
 
+== G. More (second pass): native peoples now hidden under another owner ==
+SHI  Togruta / Shili            now REP   Ahsoka's people (canon); Togruta hunting clans, Republic-friendly.
+TLZ  Talz                       Orto Plutonia (PAN) + Alzoc III (DKJ)  canon "Trespass": chieftain Thi-Sen fights
+                                          the Pantorans; on Alzoc III they are Hutt slaves. One tag on two worlds.
+NOG  Noghri clans / Honoghr     now DKJ   Honoghr's clans (Legends); a warrior people under Hutt rule here.
+SLK  Selkath / Manaan           now TDF   Ahto City, kolto, strict neutrality (KotOR lore).
+COL  Colicoid Creation Nest     now TDF   Colla IV's insectoid trade body, a CIS member in its own right (Legends).
+POL  Poletecs / Skako Minor     now TCU   canon Clone Wars s7: the Poletecs and their keeradaks fight the Techno Union.
+SKK  Skakoans / Skako           now TCU   Skako's methane-breathing natives, a Techno Union founder world.
+ARK  Arkanian Dominion          now REP   Arkania's geneticist aristocracy (Legends); proud, semi-independent.
+COW  Coway / Mimban             MIM       Mimban's underground natives beside the miners (MIM).
+MYN  Myneyrsh & Psadan / Wayland  now TDF  Wayland's two native races (Legends, Thrawn trilogy).
+RIS  Rishii / Rishi             now REP   bird-people of Rishi: a tiny native minor on the Republic listening world.
+DIA  Diathim / Iego             IEG       the "angels" of Iego's moon (canon Episode I mention, Legends lore).
+GHO  Ghorman                    now FON   Ghorman's textile guilds (canon, Andor): a later rebel world, here a guild state.
+JWH  Guardians of the Whills / Jedha  now REP  Jedha City's holy orders (canon): a sacred neutral city-state.
+KES  Kessel royal family        now PYK   canon "Solo": King Yaruba's house rules Kessel under the Pykes.
+
+== H. More corporations and guilds that hold ground ==
+LOR  Loronar Corporation (Loronar, now REP)       BAL  Balmorran Arms (Balmorra, now TCU)
+BHH  Bounty Hunters' Guild (Ord Mantell enclave)  BTK  Baktoid Combat Automata (Foerost / Geonosis foundries)
+MAH  Mandal Hypernautics (Mandalore enclave)      TRH  Brentaal trade houses (Brentaal IV: House Pelagia, Legends)
+ICC  Intergalactic Communications Center (Praesitlyn, the Battle of Praesitlyn)
+KCL  Kaminoan cloners' enclave if Kamino stays Republic (A-list KAM is the cleaner version)
+
+== I. Ruling houses, clans and orders (sub-tags or event releases inside existing powers) ==
+Chiss Ruling Families   canon "Thrawn Ascendancy": Chaf, Clarr, Csapla, Dasklo, Inrokini, Irizi, Obbic, Plikh,
+                        Ufsa. Two or three of them holding Csaus, Copero, Cioral would make Chiss space a real map.
+Tapani noble houses     Fondor is in the Tapani sector (Legends): Houses Pelagia, Mecrosa, Melantha... as minors
+                        round Fondor, or as FON's internal politics.
+Mandalorian clans       Kryze, Vizsla, Wren, Saxon (canon): civil-war tags released from MAN / DWA.
+Hutt kajidics           Anjiliac (Jabba's family is Desilijic; Anjiliac is Legends' other great clan) beside the
+                        four kajidics already in.
+Twi'lek clans           Ryloth's clans (Syndulla, Lethan houses) as a civil-war release of RYL / FRM.
+Wookiee clans           Kashyyyk's clan chiefs (Tarfful's Kachirho) as KAS's internal politics or releases.
+Jedi Order enclaves     Ilum, Tython, Ossus as a neutral JDO holding with no army: the Order outside the Republic's
+                        armed forces (flavour; careful with balance).
+Nightsister covens      DHT split into covens, Mother Talzin's ruling one.
+Weequay pirate gangs    Florrum: other gangs beside Ohnaka (OHN).
+Bothan spynet clans     Bothawui's clans as BHO's internal politics.
+
+== J. More factions ==
+Tion Hegemony (Lianna is in the Tion Cluster; Legends' old Tion power), Delegation of 2000 (Republic opposition:
+a focus/decision group rather than a tag), Separatist Council corporate bloc (TCU, TDF, CMG, IBC, COL as a sub-faction
+inside the CIS), Outer Rim pirate league (OHN, Weequay gangs, Zygerrians), Shipwrights' guilds (see F).
+
 == Suggested order for the week ==
 1. Section D fixes (cheap, removes oddities).
 2. Five strongest A tags: SSB, KAL, CER, KAM, ITH.
