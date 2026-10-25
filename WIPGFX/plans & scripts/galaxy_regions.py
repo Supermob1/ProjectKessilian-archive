@@ -23,6 +23,7 @@ ROOT = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), 
 OUT_JSON = os.path.join(ROOT, "WIPGFX/Assets/galaxy_regions.json")
 OUT_POS = os.path.join(ROOT, "WIPGFX/Assets/galaxy_planets.json")
 CHART_NPY = os.path.join(ROOT, "WIPGFX/Assets/galaxy_chart_alpha.npy")
+REGION_NPY = os.path.join(ROOT, "WIPGFX/Assets/galaxy_region_labels.npy")   # half-res region ids (CODE), read by space_provinces.py
 TAU = 2 * math.pi
 RINGS = ["Deep Core", "Core Worlds", "Colonies", "Inner Rim", "Expansion Region", "Mid Rim", "Outer Rim"]
 OTHER = ["Hutt Space", "Wild Space", "Unknown Regions"]
@@ -298,6 +299,7 @@ def chart():
         if reg[p] != "Hutt Space":
             hm &= np.hypot(X - x, Z - z) > r + MARGIN
     region = smooth_regions(np.where(hm, 9, lev), ps, reg, X, Z)            # 9 = Hutt Space
+    np.save(REGION_NPY, region.astype(np.uint8))
     for p in data:
         data[p]["chart_region"] = shown.get(p, data[p]["region"])
     json.dump(data, open(OUT_JSON, "w", encoding="utf-8"), indent=1, ensure_ascii=False)

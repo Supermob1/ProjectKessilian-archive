@@ -8,7 +8,7 @@ canon star wars sectors, not the colonies/core things but the real sector map").
 
 Each planet's sector comes from its Wookieepedia infobox (cached in WIPGFX/research/<planet>/facts.json by
 research_planet.py), with SECTOR_FIX for the planets whose infobox has none. Every space (sea) province goes to the
-sector of the nearest planet (distance to the planet's edge); a sector split in pieces keeps its biggest piece and the
+sector of the nearest planet in the same galaxy chart region (Deep Core, Core Worlds...; distance to the planet's edge); a sector split in pieces keeps its biggest piece and the
 other pieces join the neighbour they touch most. Planet (land) regions and their ids are not touched.
 """
 import collections, glob, json, math, os, re, sys
@@ -70,16 +70,21 @@ def load():
         m = (a != b) & np.isin(a, seas) & np.isin(b, seas)
         for p, q in zip(a[m].tolist(), b[m].tolist()):
             adj[(min(p, q), max(p, q))] += 1
-    return gr.planets(), seas, {i: (cx[i], cz[i]) for i in seas}, adj, pid, sea, H
+    region = np.load(gr.REGION_NPY).repeat(2, 0).repeat(2, 1)[:H, :pid.shape[1]]   # galaxy chart region per pixel
+    sea_reg = {i: int(np.bincount(region[pid == i]).argmax()) for i in seas}
+    ps = gr.planets()
+    p_reg = {p: int(region[int(round(H - 1 - z)), int(round(x))]) for p, (x, z, r) in ps.items()}
+    return ps, seas, {i: (cx[i], cz[i]) for i in seas}, adj, pid, sea, H, sea_reg, p_reg
 
 
-def assign(planets, seas, cen, adj):
+def assign(planets, seas, cen, adj, sea_reg, p_reg):
     sec = {p: sector_of(p) for p in planets}
     named = [(p, xz) for p, xz in planets.items() if sec[p]]
     group = {}
     for i in seas:
         x, z = cen[i]
-        p = min(named, key=lambda t: math.hypot(x - t[1][0], z - t[1][1]) - t[1][2])[0]
+        same = [t for t in named if p_reg[t[0]] == sea_reg[i]] or named   # a sector stays inside its galaxy region
+        p = min(same, key=lambda t: math.hypot(x - t[1][0], z - t[1][1]) - t[1][2])[0]
         group[i] = title(sec[p])
     nb = collections.defaultdict(collections.Counter)
     for (p, q), w in adj.items():
@@ -131,8 +136,8 @@ def regions():
 
 
 def plan(write_preview=True):
-    planets, seas, cen, adj, pid, sea, H = load()
-    group, sec = assign(planets, seas, cen, adj)
+    planets, seas, cen, adj, pid, sea, H, sea_reg, p_reg = load()
+    group, sec = assign(planets, seas, cen, adj, sea_reg, p_reg)
     names = sorted(set(group.values()))
     print(f"{len(seas)} space provinces -> {len(names)} sector regions")
     for nm in names:

@@ -3,7 +3,7 @@ strategic_region={
 	id=264
 	name="STRATEGICREGION_264"
 	provinces={
-		4854 
+		4770 4854 5098 
 	}
 	naval_terrain=water_planets
 	weather={
