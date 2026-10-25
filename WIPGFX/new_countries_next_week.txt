@@ -1,0 +1,48 @@
+NEW COUNTRIES - CANDIDATES FOR NEXT WEEK (2026-10-25)
+Built from the start-date owners in history/states (78 tags now; 176 planets). Each line: tag idea, planet, who owns
+it now, why (lore, Legends unless marked canon). Ordered by how much a new tag adds. Check lore before adding.
+
+== A. Planets owned by a big bloc where a native government fits the era (best value) ==
+SSB  SoroSuub Corporation / Sullust      now CMG   SoroSuub ran Sullust and openly joined the CIS; its own corporate state.
+KAL  Kaleesh                              now IBC   Grievous' people, the Huk War; a strong flavour tag for Kalee.
+CER  Cerea                                now REP   Cereans kept out of the war (Ki-Adi-Mundi's home): neutral tag.
+ITH  Ithorian Herd                        now REP   Ithor was neutral in the Clone Wars; herd ships, pacifist flavour.
+KAM  Kamino (Kaminoan government)         now REP   Lama Su's government is a Republic contractor, not the Republic itself.
+DEV  Devaron                              now REP   Devaronian homeworld; small Republic member with its own government.
+GRN  Gran Protectorate / Malastare        now REP   Gran-ruled Malastare (Episode I senator Aks Moe; canon Clone Wars arc).
+KDR  Kel Dor / Dorin                      now REP   Plo Koon's people; Dorin is a closed world with its own rule.
+ANS  Ansion                               now REP   "Approaching Storm": Ansion's Unity on the edge of secession; swing state.
+DUR  Duros / Duro                         now REP   Duros homeworld with orbital cities; Republic member government.
+BAK  Bakura                               now CIS   Independent Outer Rim world in Legends, Bakuran government.
+SLV  Sluis Van / Sluissi                  now CIS   Sluissi shipwrights; Sluis Van fought on the Republic side in Legends.
+GIV  Givin / Yag'Dhul                     now CIS   Givin homeworld, the Dodecapolis; mathematician species.
+KOR  Korunnai / Haruun Kal                now CIS   "Shatterpoint": Korunnai partisans vs the CIS-backed Balawai.
+MAR  Marits / Gaftikar                    now CIS   "True Colors": Republic-backed Marit rising against the pro-CIS colonists.
+
+== B. Rebels and splinters (released by events, or a starting minor on part of a planet) ==
+FRM  Free Ryloth Movement                 Ryloth    Cham Syndulla's movement (canon), split from RYL or released.
+NBR  Nightbrothers                        Dathomir  Savage/Maul's clan (canon), alongside the Nightsisters (DHT).
+KHO  Khoonda / Dantooine settlers         now IBC   Dantooine's farmers' assembly (KotOR); a sleepy neutral.
+CEN  Cestus Cybernetics / Ord Cestus      now TDF   "The Cestus Deception": a company world courted by both sides.
+
+== C. Tags that already exist but own nothing at the start ==
+YIN  Yinchorri        - Yinchorr is REP at the start. Give it Yinchorr (the Yinchorri Uprising predates the war; or keep
+                        it as a rebel tag released by event).
+MND  Mandalorians     - MAN holds Mandalore; MND and DWA overlap. Decide what MND is for.
+BLS  Black Sun, SHA Shadow Collective, PYK... - crime syndicates: BLS/SHA own nothing (fine if event-spawned).
+ORC, EOT, LKR, SCC, VNG, ZAN - later-era or event tags: check they are meant to be dormant.
+
+== D. Ownership oddities seen while listing (fix before or with the new tags) ==
+Dagobah owned by UTA (Utapau)   - Dagobah should be uninhabited (no towns rule): unowned/impassable, or a hidden tag.
+Endor owned by COR (Corellia)   - Ewoks: a Bright Tree tribe tag, or a nominal claim. Odd as Corellian.
+Lehon owned by CHS (Chiss)      - Rakata Prime is Unknown Regions; Rakatan remnant tag or unowned ruin.
+Ossus owned by CIS              - abandoned world in this era; maybe Jedi archaeology outpost (REP) or unowned.
+Korriban, Dromund Kaas, Vanqor owned by CMG - Commerce Guild holding Sith worlds: deliberate? else unowned ruins.
+
+== Suggested order for the week ==
+1. Section D fixes (cheap, removes oddities).
+2. Five strongest A tags: SSB, KAL, CER, KAM, ITH.
+3. YIN onto Yinchorr.
+4. If time: ANS, GRN, BAK, SLV, GIV; B tags as event releases.
+Per tag the usual set: common/country_tags, common/countries (colour), history/countries (leader, ideology,
+start techs), states owner/cores, localisation, flag. The HOI4 Country Editor (tools/) lists what each tag is missing.
