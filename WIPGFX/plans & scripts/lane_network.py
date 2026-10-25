@@ -103,11 +103,13 @@ def build():
     R = {i: math.sqrt(area[i - 1] / math.pi) for i in B}
     E, deg = network(P, R, B)
 
-    state = {}
+    state = {}                                                   # province -> state, passable states only
     for f in glob.glob(os.path.join(ROOT, "history/states/*.txt")):
         s = open(f, encoding="utf-8-sig", errors="replace").read()
         m = re.search(r"provinces\s*=\s*\{([^}]*)\}", s)
         sid = re.search(r"\bid\s*=\s*(\d+)", s)
+        if re.search(r"\bimpassable\s*=\s*yes", s):             # a lane never ends in an impassable state
+            continue
         for p in (m.group(1).split() if m and sid else []):
             state[int(p)] = int(sid.group(1))
     coast = land & ndi.binary_dilation(~land)
@@ -116,6 +118,9 @@ def build():
     cy, cx = cy[keep], cx[keep]
     cb = lab[cy, cx]
     pts = {i: np.stack([cx[cb == i], cy[cb == i]], 1).astype(float) for i in B}
+    _, (sea_iy, sea_ix) = ndi.distance_transform_edt(land, return_indices=True)
+    shut = [names[i] for i in B if not len(pts[i])]
+    assert not shut, f"planets with no passable coast: {shut}"
     lanes = []
     for a, b in E:
         d, j = cKDTree(pts[b]).query(pts[a])
@@ -129,9 +134,9 @@ def build():
             if 0 <= x < W and 0 <= y < H and not land[y, x]:
                 through = int(pid[y, x])
                 break
-        if through is None:
-            print(f"no space province off {names[a]} toward {names[b]}: skipped")
-            continue
+        if through is None:                                      # the way out is land: the nearest space pixel
+            y, x = sea_iy[int(pa[1]), int(pa[0])], sea_ix[int(pa[1]), int(pa[0])]
+            through = int(pid[y, x])
         lanes.append((fa, fb, through, names[a].split(" - ")[0], names[b].split(" - ")[0]))
     return lanes, E, deg, P, R, B, names, (H, W)
 
