@@ -23,7 +23,6 @@ ROOT = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), 
 OUT_JSON = os.path.join(ROOT, "WIPGFX/Assets/galaxy_regions.json")
 OUT_POS = os.path.join(ROOT, "WIPGFX/Assets/galaxy_planets.json")
 CHART_NPY = os.path.join(ROOT, "WIPGFX/Assets/galaxy_chart_alpha.npy")
-REGION_NPY = os.path.join(ROOT, "WIPGFX/Assets/galaxy_region_labels.npy")   # half-res region ids (CODE), read by space_provinces.py
 TAU = 2 * math.pi
 RINGS = ["Deep Core", "Core Worlds", "Colonies", "Inner Rim", "Expansion Region", "Mid Rim", "Outer Rim"]
 OTHER = ["Hutt Space", "Wild Space", "Unknown Regions"]
@@ -299,7 +298,6 @@ def chart():
         if reg[p] != "Hutt Space":
             hm &= np.hypot(X - x, Z - z) > r + MARGIN
     region = smooth_regions(np.where(hm, 9, lev), ps, reg, X, Z)            # 9 = Hutt Space
-    np.save(REGION_NPY, region.astype(np.uint8))
     for p in data:
         data[p]["chart_region"] = shown.get(p, data[p]["region"])
     json.dump(data, open(OUT_JSON, "w", encoding="utf-8"), indent=1, ensure_ascii=False)
@@ -368,9 +366,6 @@ def chart():
     txt = np.asarray(text, np.float32) / 255
     a = np.clip(fill * 0.6 + line * 0.35 + txt * 0.42, 0, 1)
     inject(os.path.join(ROOT, "map/terrain/ice_diffuse.dds"), a)
-    base = os.path.join(ROOT, "WIPGFX/Assets/galaxy_chart_alpha_base.npy")   # space_sectors.py labels' copy: stale now
-    if os.path.exists(base):
-        os.remove(base)
     prev = np.stack([a * 0.45, a * 0.66, a * 0.78], -1)
     im = Image.fromarray((np.clip(prev * 1.6, 0, 1) * 255).astype(np.uint8))
     d = ImageDraw.Draw(im)

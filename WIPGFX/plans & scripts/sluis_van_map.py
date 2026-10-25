@@ -74,17 +74,10 @@ TERRAIN_CFG = dict(
 )
 
 # models (military_buildings.py place Sluis Van): big, custom (user rule 2026-10-14)
-def orbit(ctx):
-    """the Sluis Van Shipyards in orbit east of the disc, above the lift complex (the user, 2026-10-25: naval = space)"""
-    (cy, cx), R = ctx["z"]["centre"], ctx["z"]["radius"]
-    ctx["put"]("hod_slv_yards", 1.0, cy - 0.2 * R, cx + R + 0.95 * R)
-
-
 PLACEMENT = dict(
-    new_models={"hod_slv_city", "hod_slv_lift", "hod_slv_yards"},
+    new_models={"hod_slv_city", "hod_slv_lift"},
     items=[("hod_slv_city", 1.0, ("at_vp", CAPITAL_VP)), ("hod_slv_lift", 1.0, ("at_vp", "Orbital Lift Complex"))],
     clear={"hod_slv_city": 5.0, "hod_slv_lift": 4.5},
-    hook=orbit,
 )
 
 def mask():

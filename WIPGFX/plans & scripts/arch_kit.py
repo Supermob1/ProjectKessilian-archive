@@ -17299,41 +17299,6 @@ def slv_lift(k):
     dome(k, 0.0, -3.6, 1.4, 1.0, 1.0, [B_ROOF] * 4, sides=12)
 
 
-def slv_yards(k):
-    # the Sluis Van Shipyards (Legends: one of the largest shipyards and repair docks of the galaxy, a crowd of orbital
-    # docks round the planet; the Battle of Sluis Van), IN ORBIT beside the disc (sluis_van_map orbit hook, the user,
-    # 2026-10-25: naval = space): a Sluissi serpent spine coiling through space, a domed command station at its head,
-    # six repair cradles off the spine holding hulls (two half-plated), beacon towers at the cradle ends. ~40 across
-    import random
-    rng = random.Random("slv_yards")
-    zc = 7.0
-    spine = [(-18.0 + 36.0 * i / 40, 5.0 * math.sin(TAU * i / 40 * 1.25), zc + 0.6 * math.sin(TAU * i / 20)) for i in range(41)]
-    sweep(k, spine, [(-0.9, -0.5), (0.9, -0.5), (0.9, 0.5), (-0.9, 0.5)], [B_PLATE_WIN, B_PLATE, B_PLATE_WIN, B_PLATE],
-          caps=B_HULL)
-    for i in range(0, 41, 4):                                                        # collars along the spine
-        x, y, z = spine[i]
-        k.tube((x - 0.25, y, z), (x + 0.25, y, z), 1.3, B_RUST if i % 8 == 0 else B_HULL, sides=10)
-    hx, hy, hz = spine[-1]                                                          # the command station
-    k.lathe([(0.0, hz - 3.0), (2.6, hz - 2.2), (3.4, hz - 0.4), (3.4, hz + 0.4), (2.4, hz + 1.6)],
-            [B_HULL, B_PLATE_WIN, B_PLATE, B_PLATE_WIN], sides=20, cx=hx + 2.0, cy=hy)
-    dome(k, hx + 2.0, hy, hz + 1.6, 2.4, 2.0, [B_ROOF] * 4, sides=20)
-    k.lathe([(0.12, hz + 3.6), (0.05, hz + 7.0)], [B_PIPE], sides=4, cx=hx + 2.0, cy=hy, cap=B_GLOW)
-    for j, i in enumerate((6, 12, 18, 24, 30, 36)):                                 # the repair cradles
-        x, y, z = spine[i]
-        s_ = 1 if j % 2 else -1
-        y1 = y + s_ * 11.0
-        for ox in (-2.2, 2.2):                                                       # cradle arms (box truss)
-            for oz in (-1.6, 1.6):
-                k.tube((x + ox, y, z + oz), (x + ox, y1, z + oz), 0.14, B_GIRDER, sides=5)
-            for t in range(6):
-                yt = y + (y1 - y) * t / 5
-                k.tube((x + ox, yt, z - 1.6), (x + ox, yt, z + 1.6), 0.1, B_HAZARD if t % 2 else B_GIRDER, sides=4)
-        L = rng.uniform(7.0, 9.0)
-        ym = (y + y1) / 2
-        k.tube((x, ym - s_ * L / 2, z), (x, ym + s_ * L / 2, z), 1.2, B_HULL if j % 3 else B_RUST, sides=10, r1=0.3)
-        sw_cap_tower(k, x, y1, z - 1.2, z + 2.6, 0.3, B_PLATE, B_ROOF, B_GLOW)
-
-
 SLV_TOWN = dict(build=[(lambda k, x, y, z0, w, d, h, a, rng: (k.lathe([(w, z0), (w * 0.7, z0 + h)], [B_PLATE_WIN], sides=8,
                                                                       cx=x, cy=y),
                                                               dome(k, x, y, z0 + h, w * 0.7, w * 0.6, [B_ROOF] * 2, sides=8, n=2)),
