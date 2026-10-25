@@ -33,6 +33,11 @@ PROBLEMS SEEN ACROSS MANY PLANETS (fixing these in shared code clears most P2s):
    (Commenor, Karfeddion, Nyriaan, Rattatak, Foerost, Loronar, Rendilli, Skako...). Rule: custom per planet.
 6. Shipyards on the ground: many *_yards / *_works with ships sit on ground slabs. Rule: naval = orbital.
    Confirm their PLACEMENT puts them beside the disc; the ones built as ground frames need to become stations.
+   CORRECTION (checked the <planet>_map.py PLACEMENT hooks later): these are already put in orbit beside the disc:
+   aln/anx/ren/rot/foe/foe_old/htt/cop/kua/fon/crl/yag/ydh yards, lia_shipyard, bon_shipyard, rv_ring. Their ORBIT
+   fixes below only mean "bulk them up". Really on the ground: hod_ot_yards (Ord Trasi, next to hod_ot_orbital),
+   hod_bot_yards (Botajef, next to hod_bot_orbital), hod_foe_hullworks, hod_kua_works (KDY Ground Works: fine on
+   the ground). Sluis Van has no station at all.
 7. Halo rings and flat discs still appear (Ilum Tonvarr, Tibrin city, Wasskah lodge pad, Alderaan sanctuary).
 8. Lone boxes under ~40 KB: almost every mesh under 40 KB is a P1 (one block, an obelisk, a plain pyramid).
 

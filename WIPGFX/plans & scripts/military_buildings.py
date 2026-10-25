@@ -7802,7 +7802,7 @@ def models(*only):
         build(name, fn, tex="hod_utapau")
     for name, fn in (("hod_que_city", ak.que_city), ("hod_que_forge", ak.que_forge)):
         build(name, fn, tex="hod_queyta")
-    for name, fn in (("hod_slv_city", ak.slv_city), ("hod_slv_lift", ak.slv_lift)):
+    for name, fn in (("hod_slv_city", ak.slv_city), ("hod_slv_lift", ak.slv_lift), ("hod_slv_yards", ak.slv_yards)):
         build(name, fn, tex="hod_sluisvan")
     for name, fn in (("hod_mus_klegger", ak.mus_klegger), ("hod_mus_fralideja", ak.mus_fralideja), ("hod_mus_ziton", ak.mus_ziton)):
         build(name, fn, tex="hod_mustafar")

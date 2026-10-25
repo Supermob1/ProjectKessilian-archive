@@ -5,6 +5,7 @@ canon star wars sectors, not the colonies/core things but the real sector map").
     python -B "WIPGFX/plans & scripts/space_sectors.py" write    rewrites the space regions in map/strategicregions,
                                                                  their names in strategic_region_names_l_english.yml
                                                                  and their weather points in map/weatherpositions.txt
+    python -B "WIPGFX/plans & scripts/space_sectors.py" labels   bakes the sector names faintly into the galaxy chart
 
 Each planet's sector comes from its Wookieepedia infobox (cached in WIPGFX/research/<planet>/facts.json by
 research_planet.py), with SECTOR_FIX for the planets whose infobox has none. Every space (sea) province goes to the
@@ -210,6 +211,55 @@ def write():
     print(f"wrote {len(names)} sector regions (ids {min(used)}..{max(used)}); removed {len(set(sea_only) - set(used))} old ids")
 
 
+def labels():
+    """the sector names, small and faint, baked into the galaxy chart (alpha of map/terrain/ice_diffuse.dds) at the
+    roomiest spot of each sector's space, away from planets. Drawn over CHART_BASE, the chart without sector names
+    (saved on the first run; galaxy_regions.py chart deletes it when it redraws the chart)"""
+    from PIL import Image, ImageDraw, ImageFont
+    from scipy import ndimage as ndi
+    import galaxy_regions as gr
+    import planet_terrain_gen as g
+    base_path = os.path.join(ROOT, "WIPGFX/Assets/galaxy_chart_alpha_base.npy")
+    if not os.path.exists(base_path):
+        np.save(base_path, np.load(gr.CHART_NPY))
+    base = np.load(base_path).astype(np.float32) / 255.0
+    h, w = base.shape
+    land, _, pid = g.load_provinces()
+    loc = dict(re.findall(r'^\s*STRATEGICREGION_(\d+):\d*\s*"([^"]*)"', open(LOC, encoding="utf-8-sig").read(), re.M))
+    reg = np.zeros(int(pid.max()) + 1, np.int32)
+    for rid, (f, t, provs) in regions().items():
+        reg[provs] = rid
+    R = np.where(land, 0, reg[pid])[::2, ::2][:h, :w]                 # half res, like the chart
+    font = None
+    for name in ("DejaVuSans.ttf", "arial.ttf", "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf"):
+        try:
+            font = ImageFont.truetype(name, 11)
+            break
+        except OSError:
+            continue
+    font = font or ImageFont.load_default()
+    text = Image.new("L", (w, h), 0)
+    d = ImageDraw.Draw(text)
+    region_text = ndi.binary_dilation(base - ndi.gaussian_filter(base, 3.0) > 0.08, iterations=12)   # the region names
+    room = ndi.distance_transform_edt(~(ndi.binary_dilation(land[::2, ::2][:h, :w], iterations=10) | region_text))
+    n = 0
+    for rid in np.unique(R[R > 0]).tolist():
+        nm = loc.get(str(rid), "")
+        if not nm or nm in gr.RINGS + gr.OTHER or rid not in reg[np.unique(pid[~land])]:   # same name as its region
+            continue
+        m = R == rid
+        inner = ndi.distance_transform_edt(m) * np.minimum(room, 60)   # deep inside the sector and clear of planets
+        y, x = np.unravel_index(inner.argmax(), inner.shape)
+        label = nm.upper()
+        x0, y0, x1, y1 = d.textbbox((0, 0), label, font=font)
+        d.text((x - (x1 - x0) / 2, y - (y1 - y0) / 2), label, fill=255, font=font)
+        n += 1
+    a = np.clip(base + np.asarray(text, np.float32) / 255.0 * 0.22, 0, 1)    # added, so it shows on bright fills too
+    gr.inject(os.path.join(ROOT, "map/terrain/ice_diffuse.dds"), a)
+    Image.fromarray((a * 255).astype(np.uint8)).save(os.path.join(ROOT, "WIPGFX/Assets/galaxy_chart_sectors_preview.png"))
+    print(f"labels: {n} sector names baked into the chart")
+
+
 if __name__ == "__main__":
     os.chdir(ROOT)
-    {"plan": plan, "write": write}[sys.argv[1] if len(sys.argv) > 1 else "plan"]()
+    {"plan": plan, "write": write, "labels": labels}[sys.argv[1] if len(sys.argv) > 1 else "plan"]()

@@ -368,6 +368,9 @@ def chart():
     txt = np.asarray(text, np.float32) / 255
     a = np.clip(fill * 0.6 + line * 0.35 + txt * 0.42, 0, 1)
     inject(os.path.join(ROOT, "map/terrain/ice_diffuse.dds"), a)
+    base = os.path.join(ROOT, "WIPGFX/Assets/galaxy_chart_alpha_base.npy")   # space_sectors.py labels' copy: stale now
+    if os.path.exists(base):
+        os.remove(base)
     prev = np.stack([a * 0.45, a * 0.66, a * 0.78], -1)
     im = Image.fromarray((np.clip(prev * 1.6, 0, 1) * 255).astype(np.uint8))
     d = ImageDraw.Draw(im)
