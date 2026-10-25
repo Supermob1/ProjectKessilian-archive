@@ -394,8 +394,6 @@ def reinject():
     """after ice_diffuse.dds was rewritten from the atmospheres: the saved chart back into its alpha"""
     if os.path.exists(CHART_NPY):
         inject(os.path.join(ROOT, "map/terrain/ice_diffuse.dds"), np.load(CHART_NPY) / 255.0)
-    import hyperlane_art                                                    # and the curved hyperlanes into its rgb
-    hyperlane_art.reapply()
 
 
 if __name__ == "__main__":
